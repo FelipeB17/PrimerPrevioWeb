@@ -4,14 +4,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const categoryButtons = document.querySelectorAll('[data-category]');
     const cartButton = document.getElementById('cartButton');
     const logoutButton = document.getElementById('logoutButton');
+    const welcomeMessage = document.getElementById('welcomeMessage');
 
     let products = [];
+    let userId = 1; // Assuming we're using user ID 1 for this example
 
     // Fetch user data
-    fetch('https://fakestoreapi.com/users/1')
+    fetch(`https://fakestoreapi.com/users/${userId}`)
         .then(response => response.json())
         .then(user => {
-            localStorage.setItem('username', user.username);
+            const fullName = `${user.name.firstname} ${user.name.lastname}`;
+            localStorage.setItem('username', fullName);
+            welcomeMessage.textContent = `Bienvenido: ${fullName}`;
         });
 
     // Fetch products
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                userId: 1,
+                userId: userId,
                 date: new Date(),
                 products: [{productId: productId, quantity: 1}]
             })

@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set welcome message
     const username = localStorage.getItem('username');
-    welcomeMessage.textContent += username;
+    welcomeMessage.textContent = `Bienvenido: ${username}`;
 
     // Fetch cart details
     fetch(`https://fakestoreapi.com/carts/${cartIdFromURL}`)
@@ -29,7 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
     fetch('https://fakestoreapi.com/users/1')
         .then(response => response.json())
         .then(user => {
-            customerName.textContent = `${user.name.firstname} ${user.name.lastname}`;
+            const fullName = `${user.name.firstname} ${user.name.lastname}`;
+            customerName.textContent = fullName;
+            // Update localStorage with the full name
+            localStorage.setItem('username', fullName);
+            // Update welcome message with the full name
+            welcomeMessage.textContent = `Bienvenido: ${fullName}`;
         });
 
     function displayCartDetails(cart) {

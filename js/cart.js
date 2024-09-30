@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Set welcome message
     const username = localStorage.getItem('username');
-    welcomeMessage.textContent += username;
+    welcomeMessage.textContent = `Bienvenido: ${username}`;
 
     // Fetch user's carts
     fetch('https://fakestoreapi.com/carts/user/1')
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // View cart details (placeholder function)
+    // View cart details
     cartList.addEventListener('click', function(e) {
         if (e.target.classList.contains('view-cart')) {
             const cartId = e.target.dataset.id;

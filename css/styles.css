@@ -1,21 +1,180 @@
-body {
-    background-color: #f8f9fa;
-}
-
-.login-container {
-    max-width: 400px;
-    margin: 100px auto;
-}
-
-#errorMessage {
-    display: none;
-}
-
-.logo-container {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.logo-container img {
-    max-width: 150px;
-}
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #ecf0f1;
+    --text-color: #34495e;
+    --header-bg: #2c3e50;
+    --header-text: #ffffff;
+    --footer-bg: #34495e;
+    --footer-text: #ecf0f1;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem 0;
+  }
+  
+  header img {
+    max-height: 50px;
+    width: auto;
+  }
+  
+  main {
+    padding: 2rem 0;
+  }
+  
+  footer {
+    background-color: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 1rem 0;
+    margin-top: 2rem;
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .btn-primary:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+  }
+  
+  .btn-secondary {
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+  }
+  
+  .btn-secondary:hover {
+    background-color: #27ae60;
+    border-color: #27ae60;
+  }
+  
+  .card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .card-img-top {
+    height: 200px;
+    object-fit: contain;
+    padding: 1rem;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    header .row {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    header .col-4 {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  
+    .btn {
+      width: 100%;
+      margin-bottom: 0.5rem;
+    }
+  
+    .card {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    h1, h2 {
+      font-size: 1.5rem;
+    }
+  
+    .card-title {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Additional styles for better responsiveness */
+  .table-responsive {
+    overflow-x: auto;
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Improved form styling */
+  .form-control {
+    border-radius: 0.25rem;
+  }
+  
+  /* Improved button styling */
+  .btn {
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+  }
+  
+  /* Improved table styling */
+  .table {
+    background-color: #ffffff;
+    border-radius: 0.25rem;
+    overflow: hidden;
+  }
+  
+  .table thead th {
+    background-color: var(--primary-color);
+    color: #ffffff;
+  }
+  
+  /* Improved card styling */
+  .card {
+    border-radius: 0.25rem;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Improved layout spacing */
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .mt-4 {
+    margin-top: 1.5rem !important;
+  }
+  
+  /* Improved header styling */
+  header h5 {
+    margin-bottom: 0;
+  }
+  
+  /* Improved footer styling */
+  footer p {
+    margin-bottom: 0;
+  }
