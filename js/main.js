@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const welcomeMessage = document.getElementById('welcomeMessage');
     const productList = document.getElementById('productList');
     const searchInput = document.getElementById('searchInput');
     const categoryButtons = document.querySelectorAll('[data-category]');
@@ -7,11 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const logoutButton = document.getElementById('logoutButton');
 
     let products = [];
-    let cart = [];
 
-    // Set welcome message
-    const username = localStorage.getItem('username');
-    welcomeMessage.textContent += username;
+    // Fetch user data
+    fetch('https://fakestoreapi.com/users/1')
+        .then(response => response.json())
+        .then(user => {
+            localStorage.setItem('username', user.username);
+        });
 
     // Fetch products
     fetch('https://fakestoreapi.com/products')
@@ -70,29 +71,36 @@ document.addEventListener('DOMContentLoaded', function() {
     productList.addEventListener('click', function(e) {
         if (e.target.classList.contains('add-to-cart')) {
             const productId = parseInt(e.target.dataset.id);
-            const product = products.find(p => p.id === productId);
-            addToCart(product);
+            addToCart(productId);
         }
     });
 
-    function addToCart(product) {
-        const existingItem = cart.find(item => item.id === product.id);
-        if (existingItem) {
-            existingItem.quantity += 1;
-        } else {
-            cart.push({ ...product, quantity: 1 });
-        }
-        updateCartButton();
+    function addToCart(productId) {
+        fetch('https://fakestoreapi.com/carts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: 1,
+                date: new Date(),
+                products: [{productId: productId, quantity: 1}]
+            })
+        })
+        .then(res => res.json())
+        .then(json => {
+            alert('Producto añadido al carrito');
+            console.log(json);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error al añadir el producto al carrito');
+        });
     }
 
-    function updateCartButton() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartButton.textContent = `Cart (${totalItems})`;
-    }
-
-    // Cart button click (you can implement the cart view here)
+    // Cart button click
     cartButton.addEventListener('click', function() {
-        alert('Cart functionality to be implemented');
+        window.location.href = 'cart.html';
     });
 
     // Logout functionality
